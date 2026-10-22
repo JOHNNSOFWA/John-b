@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b18">
+  <title>John Nsofwa | IT Student, Web Developer & Mathematics Tutor</title>
+  <meta name="description" content="John Nsofwa is an Information Technology student at Cavendish University Zambia with interests in web development, cybersecurity, AI and mathematics tutoring.">
+  <meta property="og:title" content="John Nsofwa | Portfolio">
+  <meta property="og:description" content="Information Technology student, aspiring web developer and mathematics tutor in Lusaka, Zambia.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="photo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7f5;
+      --paper: #ffffff;
+      --ink: #17231f;
+      --muted: #64716b;
+      --line: #dce4df;
+      --green: #14634d;
+      --green-dark: #0d4335;
+      --mint: #dff4e9;
+      --accent: #c5f36b;
+      --shadow: 0 18px 50px rgba(18, 44, 33, .08);
+      --radius: 22px;
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0d1512;
+      --paper: #14201a;
+      --ink: #edf5ef;
+      --muted: #a4b2aa;
+      --line: #2a3931;
+      --green: #2b8b69;
+      --green-dark: #0d4335;
+      --mint: #203c2e;
+      --accent: #c5f36b;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .2);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.7 "Manrope", system-ui, sans-serif; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+    .container { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    .mono { font-family: "DM Mono", monospace; text-transform: uppercase; letter-spacing: .12em; font-size: .73rem; }
+    .topbar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { text-decoration: none; font-weight: 800; letter-spacing: -.04em; font-size: 1.1rem; }
+    .brand span { color: var(--green); }
+    .nav-right { display: flex; align-items: center; gap: 22px; }
+    .nav-links { display: flex; gap: 22px; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: .9rem; font-weight: 700; }
+    .nav-links a:hover { color: var(--green); }
+    .theme-toggle, .menu-toggle { background: var(--paper); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 9px 13px; font: inherit; font-size: .82rem; font-weight: 700; cursor: pointer; }
+    .menu-toggle { display: none; }
+    .hero { padding: 76px 0 60px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 64px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--green); margin: 0 0 22px; }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--green); display: inline-block; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: clamp(2.8rem, 6.5vw, 5.4rem); line-height: .99; letter-spacing: -.075em; max-width: 740px; margin-bottom: 24px; }
+    h1 em { color: var(--green); font-style: normal; }
+    .hero-copy { color: var(--muted); font-size: 1.1rem; max-width: 590px; margin-bottom: 28px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 18px; border-radius: 10px; text-decoration: none; font-weight: 800; font-size: .9rem; border: 1px solid transparent; transition: transform .2s ease, background .2s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary { background: var(--green); color: #fff; }
+    .button.primary:hover { background: var(--green-dark); }
+    .button.secondary { border-color: var(--line); background: var(--paper); }
+    .hero-meta { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .meta-item strong { display: block; font-size: 1.03rem; }
+    .meta-item span { color: var(--muted); font-size: .82rem; }
+    .portrait-wrap { position: relative; max-width: 390px; justify-self: end; width: 100%; }
+    .portrait-wrap::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border: 1px solid var(--green); border-radius: 180px 180px 24px 24px; }
+    .portrait { position: relative; width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; border-radius: 180px 180px 24px 24px; background: var(--mint); box-shadow: var(--shadow); }
+    .photo-note { position: absolute; left: -30px; bottom: 26px; max-width: 205px; padding: 14px 17px; border-radius: 14px; background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow); font-size: .82rem; font-weight: 700; }
+    .photo-note small { display: block; color: var(--muted); font-weight: 500; margin-top: 3px; }
+    section { padding: 68px 0 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
+    .section-label { color: var(--green); margin-bottom: 10px; }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; letter-spacing: -.06em; margin-bottom: 0; }
+    .section-intro { color: var(--muted); max-width: 540px; margin: 12px 0 0; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 25px; min-width: 0; box-shadow: 0 3px 14px rgba(18, 44, 33, .025); }
+    .card-number { color: var(--green); margin-bottom: 26px; }
+    .card h3 { font-size: 1.15rem; letter-spacing: -.035em; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: .94rem; margin-bottom: 0; }
+    .skills-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .skill-card { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
+    .skill-card h3 { font-size: 1rem; margin-bottom: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { background: var(--mint); color: var(--green-dark); border-radius: 999px; padding: 6px 10px; font-size: .78rem; font-weight: 700; }
+    [data-theme="dark"] .tag { color: #d9f6e6; }
+    .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .project { display: flex; flex-direction: column; min-height: 245px; }
+    .project-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 22px; }
+    .project-type { color: var(--green); }
+    .project-mark { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--mint); color: var(--green-dark); font-weight: 800; }
+    .project h3 { font-size: 1.3rem; }
+    .project p { margin-bottom: 20px; }
+    .project .tags { margin-top: auto; }
+    .certificate { display: grid; grid-template-columns: .9fr 1.1fr; gap: 30px; align-items: center; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+    .certificate img { width: 100%; display: block; border-radius: 12px; border: 1px solid var(--line); }
+    .certificate h3 { font-size: 1.5rem; letter-spacing: -.04em; margin-bottom: 12px; }
+    .certificate p { color: var(--muted); }
+    .details { display: grid; grid-template-columns: 110px 1fr; gap: 8px 16px; margin: 20px 0 24px; font-size: .9rem; }
+    .details dt { color: var(--muted); }
+    .details dd { margin: 0; font-weight: 700; }
+    .timeline { display: grid; gap: 0; }
+    .timeline-item { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 23px 0; border-top: 1px solid var(--line); }
+    .timeline-date { color: var(--green); }
+    .timeline-item h3 { font-size: 1.1rem; margin-bottom: 6px; }
+    .timeline-item p { color: var(--muted); margin-bottom: 0; }
+    .contact-panel { margin-top: 68px; padding: clamp(28px, 5vw, 54px); border-radius: 28px; background: var(--green-dark); color: #f2fbf5; display: flex; justify-content: space-between; align-items: center; gap: 32px; }
+    .contact-panel .section-label { color: var(--accent); }
+    .contact-panel h2 { max-width: 580px; margin-bottom: 12px; }
+    .contact-panel p { color: #c7ddd1; max-width: 510px; margin-bottom: 0; }
+    .contact-panel .button.primary { background: var(--accent); color: #16251c; white-space: nowrap; }
+    .contact-panel .button.secondary { background: transparent; border-color: #668778; color: #fff; }
+    footer { padding: 28px 0 40px; color: var(--muted); font-size: .82rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 22px; }
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a { text-decoration: none; }
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr .72fr; gap: 35px; padding-top: 58px; }
+      .cards { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .nav-links { gap: 13px; }
+      .nav-links a { font-size: .82rem; }
+    }
+    @media (max-width: 650px) {
+      .container { width: min(100% - 30px, 1120px); }
+      .nav { min-height: 66px; }
+      .nav-right { gap: 8px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links { display: none; position: absolute; top: 65px; left: 0; right: 0; padding: 16px 20px 20px; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 11px 0; font-size: .95rem; }
+      .hero { grid-template-columns: 1fr; padding: 48px 0 24px; gap: 42px; }
+      h1 { font-size: clamp(2.75rem, 13vw, 4.5rem); }
+      .hero-copy { font-size: 1rem; }
+      .portrait-wrap { justify-self: center; width: min(78%, 330px); margin-right: 10px; }
+      .photo-note { left: -18px; }
+      section { padding-top: 54px; }
+      .section-head { display: block; }
+      .skills-grid, .project-grid { grid-template-columns: 1fr; }
+      .certificate { grid-template-columns: 1fr; padding: 16px; }
+      .timeline-item { grid-template-columns: 1fr; gap: 5px; }
+      .contact-panel { display: block; margin-top: 54px; }
+      .contact-panel .actions { margin-top: 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+    @media print {
+      .topbar, .actions, .theme-toggle, .menu-toggle { display: none !important; }
+      body { background: #fff; color: #111; }
+      .hero { padding-top: 20px; }
+      section { break-inside: avoid; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "John Nsofwa",
+    "email": "johnnsofwa200@gmail.com",
+    "address": {"@type": "PostalAddress", "addressLocality": "Lusaka", "addressCountry": "ZM"},
+    "alumniOf": {"@type": "CollegeOrUniversity", "name": "Cavendish University Zambia"},
+    "jobTitle": "Information Technology Student"
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="John Nsofwa home">JOHN<span>.</span>NSOFWA</a>
+      <div class="nav-right">
+        <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle colour theme">Dark mode</button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow mono">Portfolio · Lusaka, Zambia</p>
+        <h1 id="hero-title">Technology with <em>purpose.</em></h1>
+        <p class="hero-copy">I’m John Nsofwa, an Information Technology student at Cavendish University Zambia. I’m developing my skills in web development and cybersecurity, exploring AI-powered learning tools, and tutoring mathematics.</p>
+        <div class="actions">
+          <a class="button primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
+          <a class="button secondary" href="#contact">Contact me</a>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-item"><strong>2024–2028</strong><span>University studies</span></div>
+          <div class="meta-item"><strong>Web · Security · AI</strong><span>Areas of interest</span></div>
+          <div class="meta-item"><strong>Lusaka</strong><span>Zambia</span></div>
+        </div>
+      </div>
+      <div class="portrait-wrap">
+        <img class="portrait" src="photo.jpg" alt="Portrait of John Nsofwa" width="720" height="900">
+        <div class="photo-note">Curious by nature.<small>Learning, building and improving.</small></div>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-head">
+        <div><p class="section-label mono">01 / About</p><h2 id="about-title">A little about me.</h2></div>
+        <p class="section-intro">I’m interested in practical technology, continuous learning and projects that solve real problems in my community.</p>
+      </div>
+      <div class="cards">
+        <article class="card"><p class="card-number mono">01 — Learn</p><h3>IT student</h3><p>Studying for a Bachelor of Information Technology, with academic work covering algorithms, databases, networking, information assurance and research methods.</p></article>
+        <article class="card"><p class="card-number mono">02 — Share</p><h3>Mathematics tutor</h3><p>Supporting students with Foundation Mathematics I, Foundation Mathematics II and Discrete Mathematics. I focus on clear explanations and step-by-step problem solving.</p></article>
+        <article class="card"><p class="card-number mono">03 — Build</p><h3>Emerging developer</h3><p>Exploring website development and early-stage digital ventures, including an indigenous-language learning concept and small-business websites.</p></article>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="section-head">
+        <div><p class="section-label mono">02 / Toolkit</p><h2 id="skills-title">Skills I’m developing.</h2></div>
+        <p class="section-intro">A snapshot of tools and topics I’ve studied or used in coursework and personal practice.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card"><h3>Web development</h3><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">PHP</span><span class="tag">WordPress</span></div></div>
+        <div class="skill-card"><h3>Programming & logic</h3><div class="tags"><span class="tag">Python</span><span class="tag">C++</span><span class="tag">Algorithms</span></div></div>
+        <div class="skill-card"><h3>Cybersecurity labs</h3><div class="tags"><span class="tag">Wireshark</span><span class="tag">Nmap</span><span class="tag">Windows Firewall</span><span class="tag">Event Viewer</span></div></div>
+        <div class="skill-card"><h3>Data & analysis</h3><div class="tags"><span class="tag">Excel</span><span class="tag">SPSS</span><span class="tag">Statistics</span></div></div>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="section-head">
+        <div><p class="section-label mono">03 / Selected work</p><h2 id="projects-title">Projects & ideas.</h2></div>
+        <p class="section-intro">A selection of coursework and personal concepts. Items marked as personal projects may still be in development.</p>
+      </div>
+      <div class="project-grid">
+        <article class="card project"><div class="project-top"><span class="project-type mono">Personal concept</span><span class="project-mark" aria-hidden="true">Z</span></div><h3>ZamLingo AI</h3><p>An early-stage idea for an AI-assisted platform to help people learn Zambian indigenous languages.</p><div class="tags"><span class="tag">AI</span><span class="tag">Education</span><span class="tag">Languages</span></div></article>
+        <article class="card project"><div class="project-top"><span class="project-type mono">Personal venture</span><span class="project-mark" aria-hidden="true">P</span></div><h3>PixelCrate</h3><p>A concept for an online shop focused on digital gaming products and game-related content.</p><div class="tags"><span class="tag">E-commerce</span><span class="tag">Digital retail</span></div></article>
+        <article class="card project"><div class="project-top"><span class="project-type mono">Small-business website</span><span class="project-mark" aria-hidden="true">F</span></div><h3>Fresh Corner Grocers</h3><p>A website concept for a grocery and general-goods business, with a focus on clear product and business information.</p><div class="tags"><span class="tag">Web design</span><span class="tag">Retail</span></div></article>
+        <article class="card project"><div class="project-top"><span class="project-type mono">Coursework</span><span class="project-mark" aria-hidden="true">01</span></div><h3>Retail & inventory system</h3><p>A coursework system concept for recording stock and sales, using a web front end and database-backed functionality.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">PHP</span></div></article>
+        <article class="card project"><div class="project-top"><span class="project-type mono">Group coursework</span><span class="project-mark" aria-hidden="true">02</span></div><h3>Cybersecurity incident response</h3><p>A case study exploring network analysis, host security checks and firewall-based containment in a lab environment.</p><div class="tags"><span class="tag">Wireshark</span><span class="tag">Nmap</span><span class="tag">Firewall</span></div></article>
+        <article class="card project"><div class="project-top"><span class="project-type mono">Programming practice</span><span class="project-mark" aria-hidden="true">03</span></div><h3>USSD-style menu applications</h3><p>Small menu-driven programs created to practise program flow, input handling and conditional logic.</p><div class="tags"><span class="tag">Python</span><span class="tag">C++</span></div></article>
+      </div>
+    </section>
+
+    <section id="certificate" aria-labelledby="certificate-title">
+      <div class="section-head">
+        <div><p class="section-label mono">04 / Professional development</p><h2 id="certificate-title">Certification.</h2></div>
+      </div>
+      <div class="certificate">
+        <a href="certificate.jpg" target="_blank" rel="noopener" aria-label="Open certificate image"><img src="certificate.jpg" alt="Coursera project certificate for Build a Free Website with WordPress" loading="lazy" width="1200" height="850"></a>
+        <div>
+          <p class="section-label mono">Coursera · Project certificate</p>
+          <h3>Build a Free Website with WordPress</h3>
+          <p>A practical introduction to building a website using WordPress.</p>
+          <dl class="details"><dt>Issuer</dt><dd>Coursera</dd><dt>Completed</dt><dd>18 October 2026</dd><dt>Credential</dt><dd>Project certificate</dd></dl>
+          <a class="button primary" href="https://coursera.org/verify/1HL8GANBEBHU" target="_blank" rel="noopener">Verify certificate ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" aria-labelledby="education-title">
+      <div class="section-head">
+        <div><p class="section-label mono">05 / Background</p><h2 id="education-title">Education.</h2></div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-date mono">2024–2028 · Expected</div><div><h3>Cavendish University Zambia</h3><p>Bachelor of Information Technology</p></div></div>
+        <div class="timeline-item"><div class="timeline-date mono">2017–2019</div><div><h3>New Matero Secondary School</h3><p>Lusaka, Zambia</p></div></div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-panel" aria-labelledby="contact-title">
+      <div>
+        <p class="section-label mono">06 / Contact</p>
+        <h2 id="contact-title">Have a project or opportunity in mind?</h2>
+        <p>I’m open to suitable internship opportunities, website projects and mathematics tutoring enquiries. Feel free to get in touch.</p>
+      </div>
+      <div class="actions">
+        <a class="button primary" href="mailto:johnnsofwa200@gmail.com">Email me ↗</a>
+        <button class="button secondary" id="copy-email" type="button">Copy email</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year">2026</span> John Nsofwa · Lusaka, Zambia</span>
+      <div class="footer-links"><a href="#home">Back to top ↑</a><a href="mailto:johnnsofwa200@gmail.com">Email</a></div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const themeButton = document.getElementById('theme-toggle');
+      const menuButton = document.getElementById('menu-toggle');
+      const nav = document.getElementById('nav-links');
+      const copyButton = document.getElementById('copy-email');
+      const email = 'johnnsofwa200@gmail.com';
+
+      function getPreferredTheme() {
+        try {
+          const saved = localStorage.getItem('portfolio-theme');
+          if (saved === 'light' || saved === 'dark') return saved;
+        } catch (error) {}
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      function setTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        themeButton.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+        try { localStorage.setItem('portfolio-theme', theme); } catch (error) {}
+      }
+      setTheme(getPreferredTheme());
+      themeButton.addEventListener('click', function () {
+        setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      });
+
+      menuButton.addEventListener('click', function () {
+        const isOpen = nav.classList.toggle('open');
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+        menuButton.textContent = isOpen ? 'Close' : 'Menu';
+      });
+      nav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          nav.classList.remove('open');
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.textContent = 'Menu';
+        });
+      });
+
+      copyButton.addEventListener('click', async function () {
+        try {
+          await navigator.clipboard.writeText(email);
+          copyButton.textContent = 'Email copied!';
+        } catch (error) {
+          window.location.href = 'mailto:' + email;
+          copyButton.textContent = 'Open email app';
+        }
+        window.setTimeout(function () { copyButton.textContent = 'Copy email'; }, 2200);
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
